@@ -4,6 +4,6 @@
 - level controller pre kadı level
 - referencie na prefaby nastavi len v global controller, z neho si ostatné skripty v start up vezmú potrebné referencie
 - zjednotenie pouívania tagov (najlepšie nepouíva vôbec, max na oznaèenie global controller a aj to urobi v start up skriptu, predíde sa tım zabudnutiu nastavenia nieèoho)
-- prerobi checkpointy na dynamic path finding (najlepšie rozdeli checkpointy do menších oblastí s predvypoèítanımi cestami medzi nimi, cesty sa budú pèíta len do hranice s ïalšou oblasou)
+- pole nami vytvorenych + moznost tvorit custom checkpointy(kontrola moznosti cesty z predchadzajuceho checkpointu/vezicky)
 - abstratná Projectile trieda, z ktorej budú dedi jednotlivé skripty pre konkrétne strely + overridovanie protected metód + pravdepodobne bude nutné aj pre jednotlivé jednotky a hrdinov
 - tower range asi prerobi na valec (momentálne by mal by gu¾a, èo môe robi problémy s dostrelom vee na kopci) + kontrolova max vıšku projektilov a kolízie s povrchom
