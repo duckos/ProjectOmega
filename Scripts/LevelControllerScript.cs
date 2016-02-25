@@ -16,7 +16,7 @@ namespace Assets.Scripts
         /// <summary>
         /// Returns instance of level controller
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Level controller instance</returns>
         public static LevelControllerScript<T> Get()
         {
             return _instance ?? (_instance = FindObjectOfType<LevelControllerScript<T>>());
@@ -57,8 +57,8 @@ namespace Assets.Scripts
         /// <summary>
         /// Moves checkpoint from one position to another in collection
         /// </summary>
-        /// <param name="oldPosition"></param>
-        /// <param name="newPosition"></param>
+        /// <param name="oldPosition">Position of checkpoint to be moved</param>
+        /// <param name="newPosition">Position to where will be checkpoint moved</param>
         public void MoveCheckpoint(int oldPosition, int newPosition)
         {
             if ((oldPosition < 0) || (oldPosition >= Checkpoints.Count))

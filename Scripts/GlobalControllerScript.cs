@@ -16,7 +16,7 @@ namespace Assets.Scripts
         /// <summary>
         /// Returns instance of global controller
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Global controller instance</returns>
         public static GlobalControllerScript Get()
         {
             return _instance ?? (_instance = FindObjectOfType<GlobalControllerScript>());
@@ -127,7 +127,7 @@ namespace Assets.Scripts
         /// Finds and returns player unit of specific type
         /// </summary>
         /// <param name="unitType">Type of player unit to be found</param>
-        /// <returns></returns>
+        /// <returns>Player unit of given type</returns>
         private PlayerUnit FindPlayerUnit(PlayerUnitType unitType)
         {
             PlayerUnit unit = PlayerUnitStats.FirstOrDefault(t => t.UnitType == unitType);
