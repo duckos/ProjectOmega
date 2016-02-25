@@ -14,7 +14,7 @@ namespace Assets.Scripts.Utility
     {
         [SerializeField] private string _name;
         /// <summary>
-        /// 
+        /// Gets or sets name of player unit
         /// </summary>
         public string Name
         {
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private PlayerUnitType _unitType;
         /// <summary>
-        /// 
+        /// Gets or sets type of player unit
         /// </summary>
         public PlayerUnitType UnitType
         {
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _maxHealth;
         /// <summary>
-        /// 
+        /// Gets or sets max health of player unit
         /// </summary>
         public float MaxHealth
         {
@@ -44,7 +44,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _damage;
         /// <summary>
-        /// 
+        /// Gets or sets damage value of player unit
         /// </summary>
         public float Damage
         {
@@ -54,7 +54,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _armor;
         /// <summary>
-        /// 
+        /// Gets or sets armor value of player unit
         /// </summary>
         public float Armor
         {
@@ -64,7 +64,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _attackSpeed;
         /// <summary>
-        /// 
+        /// Gets or sets attack speed of player unit
         /// </summary>
         public float AttackSpeed
         {
@@ -74,7 +74,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _moveSpeed;
         /// <summary>
-        /// 
+        /// Gets or sets move speed of player unit
         /// </summary>
         public float MoveSpeed
         {
@@ -84,7 +84,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _spawnCooldown;
         /// <summary>
-        /// 
+        /// Gets or sets spawn cooldown time of player unit
         /// </summary>
         public float SpawnCooldown
         {
@@ -93,7 +93,7 @@ namespace Assets.Scripts.Utility
         }
 
         /// <summary>
-        /// 
+        /// Creates player unit with default values of properties
         /// </summary>
         public PlayerUnit()
         {
@@ -108,16 +108,16 @@ namespace Assets.Scripts.Utility
         }
 
         /// <summary>
-        /// 
+        /// Creates player unit with specific values of properties
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="unitType"></param>
-        /// <param name="maxHealth"></param>
-        /// <param name="damage"></param>
-        /// <param name="armor"></param>
-        /// <param name="attactSpeed"></param>
-        /// <param name="moveSpeed"></param>
-        /// <param name="spawnCooldown"></param>
+        /// <param name="name">Name of player unit</param>
+        /// <param name="unitType">Type of player unit</param>
+        /// <param name="maxHealth">Max health of player unit</param>
+        /// <param name="damage">Damage of player unit</param>
+        /// <param name="armor">Armor of player unit</param>
+        /// <param name="attactSpeed">Attack speed of player unit</param>
+        /// <param name="moveSpeed">Move speed of player unit</param>
+        /// <param name="spawnCooldown">Spawn cooldown time of player unit</param>
         public PlayerUnit(string name, PlayerUnitType unitType, float maxHealth, float damage, float armor, float attactSpeed, float moveSpeed, float spawnCooldown)
         {
             Name = name;
