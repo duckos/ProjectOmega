@@ -7,12 +7,12 @@ using UnityEngine;
 namespace Assets.Scripts
 {
     /// <summary>
-    /// Level controller for Test 02
+    /// Level controller for Test 02.
     /// </summary>
     class LevelTest02ControllerScript : LevelControllerScript<LevelTest02ControllerScript>
     {
         /// <summary>
-        /// Start method of unity script
+        /// Start method of unity script.
         /// </summary>
         public void Start()
         {

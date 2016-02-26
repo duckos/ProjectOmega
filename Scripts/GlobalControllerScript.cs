@@ -8,13 +8,13 @@ using UnityEngine;
 namespace Assets.Scripts
 {
     /// <summary>
-    /// Stores global data passed between different scenes (unit upgrades / stats, prefab references, ...)
+    /// Stores global data passed between different scenes (unit upgrades / stats, prefab references, ...).
     /// </summary>
     class GlobalControllerScript : MonoBehaviour
     {
         private static GlobalControllerScript _instance;
         /// <summary>
-        /// Returns instance of global controller
+        /// Returns instance of global controller.
         /// </summary>
         /// <returns>Global controller instance</returns>
         public static GlobalControllerScript Get()
@@ -24,7 +24,7 @@ namespace Assets.Scripts
 
         [SerializeField] private List<PlayerUnit> _playerUnitStats = new List<PlayerUnit>();
         /// <summary>
-        /// Gets or sets collection of stats / upgrades information about player units
+        /// Gets or sets collection of stats / upgrades information about player units.
         /// </summary>
         public List<PlayerUnit> PlayerUnitStats
         {
@@ -33,7 +33,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Start method of unity script
+        /// Start method of unity script.
         /// </summary>
         public void Start()
         {
@@ -47,7 +47,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Updates name of player unit of specific type
+        /// Updates name of player unit of specific type.
         /// </summary>
         /// <param name="unitType">Type of player unit to be updated</param>
         /// <param name="newName">New name of player unit</param>
@@ -58,7 +58,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Updates max health of player unit of specific type
+        /// Updates max health of player unit of specific type.
         /// </summary>
         /// <param name="unitType">Type of player unit to be updated</param>
         /// <param name="newMaxHealth">New max health of player unit</param>
@@ -69,7 +69,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Updates damage value of player unit of specific type
+        /// Updates damage value of player unit of specific type.
         /// </summary>
         /// <param name="unitType">Type of player unit to be updated</param>
         /// <param name="newDamage">New damage of player unit</param>
@@ -80,7 +80,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Updates armor value of player unit od specific type
+        /// Updates armor value of player unit od specific type.
         /// </summary>
         /// <param name="unitType">Type of player unit to be updated</param>
         /// <param name="newArmor">New armor of player unit</param>
@@ -91,7 +91,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Updates attack speed of player unit od specific type
+        /// Updates attack speed of player unit od specific type.
         /// </summary>
         /// <param name="unitType">Type of player unit to be updated</param>
         /// <param name="newAttackSpeed">New attack speed of player unit</param>
@@ -102,7 +102,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Updates move speed of player unit of specific type
+        /// Updates move speed of player unit of specific type.
         /// </summary>
         /// <param name="unitType">Type of player unit to be updated</param>
         /// <param name="newMoveSpeed">New move speed of player unit</param>
@@ -113,7 +113,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Updates spawn cooldown time of player unit of specific type
+        /// Updates spawn cooldown time of player unit of specific type.
         /// </summary>
         /// <param name="unitType">Type of player unit to be updated</param>
         /// <param name="newSpawnCooldown">New spawn cooldown time of player unit</param>
@@ -124,7 +124,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Finds and returns player unit of specific type
+        /// Finds and returns player unit of specific type.
         /// </summary>
         /// <param name="unitType">Type of player unit to be found</param>
         /// <returns>Player unit of given type</returns>

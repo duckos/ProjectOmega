@@ -6,12 +6,12 @@ using System.Text;
 namespace Assets.Scripts.Utility
 {
     /// <summary>
-    /// Extension methods
+    /// Extension methods.
     /// </summary>
     static class Extension
     {
         /// <summary>
-        /// Adds new player unit to collection after checking whether it does not contain player unit of that type
+        /// Adds new player unit to collection after checking whether it does not contain player unit of that type.
         /// </summary>
         /// <param name="collection">Collection of player units</param>
         /// <param name="unit">Player unit to be added</param>

@@ -6,7 +6,7 @@ using System.Text;
 namespace Assets.Scripts.Utility
 {
     /// <summary>
-    /// Different types of player units
+    /// Different types of player units.
     /// </summary>
     enum PlayerUnitType
     {

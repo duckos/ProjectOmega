@@ -7,14 +7,14 @@ using UnityEngine;
 namespace Assets.Scripts.Utility
 {
     /// <summary>
-    /// Stores name, type and other data (max health, damage, ...) of player unit
+    /// Stores name, type and other data (max health, damage, ...) of player unit.
     /// </summary>
     [Serializable]
     class PlayerUnit
     {
         [SerializeField] private string _name;
         /// <summary>
-        /// Gets or sets name of player unit
+        /// Gets or sets name of player unit.
         /// </summary>
         public string Name
         {
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private PlayerUnitType _unitType;
         /// <summary>
-        /// Gets or sets type of player unit
+        /// Gets or sets type of player unit.
         /// </summary>
         public PlayerUnitType UnitType
         {
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _maxHealth;
         /// <summary>
-        /// Gets or sets max health of player unit
+        /// Gets or sets max health of player unit.
         /// </summary>
         public float MaxHealth
         {
@@ -44,7 +44,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _damage;
         /// <summary>
-        /// Gets or sets damage value of player unit
+        /// Gets or sets damage value of player unit.
         /// </summary>
         public float Damage
         {
@@ -54,7 +54,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _armor;
         /// <summary>
-        /// Gets or sets armor value of player unit
+        /// Gets or sets armor value of player unit.
         /// </summary>
         public float Armor
         {
@@ -64,7 +64,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _attackSpeed;
         /// <summary>
-        /// Gets or sets attack speed of player unit
+        /// Gets or sets attack speed of player unit.
         /// </summary>
         public float AttackSpeed
         {
@@ -74,7 +74,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _moveSpeed;
         /// <summary>
-        /// Gets or sets move speed of player unit
+        /// Gets or sets move speed of player unit.
         /// </summary>
         public float MoveSpeed
         {
@@ -84,7 +84,7 @@ namespace Assets.Scripts.Utility
 
         [SerializeField] private float _spawnCooldown;
         /// <summary>
-        /// Gets or sets spawn cooldown time of player unit
+        /// Gets or sets spawn cooldown time of player unit.
         /// </summary>
         public float SpawnCooldown
         {
@@ -93,7 +93,7 @@ namespace Assets.Scripts.Utility
         }
 
         /// <summary>
-        /// Creates player unit with default values of properties
+        /// Creates player unit with default values of properties.
         /// </summary>
         public PlayerUnit()
         {
@@ -108,7 +108,7 @@ namespace Assets.Scripts.Utility
         }
 
         /// <summary>
-        /// Creates player unit with specific values of properties
+        /// Creates player unit with specific values of properties.
         /// </summary>
         /// <param name="name">Name of player unit</param>
         /// <param name="unitType">Type of player unit</param>
