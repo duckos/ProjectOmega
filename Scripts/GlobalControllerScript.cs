@@ -32,6 +32,13 @@ namespace Assets.Scripts
             protected set { _playerUnitStats = value; }
         }
 
+        [SerializeField] private GameObject _warrior;
+        [SerializeField] private GameObject _spearman;
+        [SerializeField] private GameObject _axeman;
+        [SerializeField] private GameObject _knight;
+        [SerializeField] private GameObject _crossbowman;
+        [SerializeField] private GameObject _bowman;
+
         /// <summary>
         /// Start method of unity script.
         /// </summary>
@@ -44,6 +51,69 @@ namespace Assets.Scripts
 
             // testovanie funkcnosti level controllerov
             TestLevelControllers();
+        }
+
+        /// <summary>
+        /// Returns reference on player unit prefab of specific type.
+        /// </summary>
+        /// <param name="unitType">Type of player unit prefab to be found</param>
+        /// <returns></returns>
+        public GameObject GetPlayerUnitPrefab(PlayerUnitType unitType)
+        {
+            switch (unitType)
+            {
+                case PlayerUnitType.Warrior:
+                    return _warrior;
+                case PlayerUnitType.Spearman:
+                    return _spearman;
+                case PlayerUnitType.Axeman:
+                    return _axeman;
+                case PlayerUnitType.Knight:
+                    return _knight;
+                case PlayerUnitType.Crossbowman:
+                    return _crossbowman;
+                case PlayerUnitType.Bowman:
+                    return _bowman;
+                default:
+                    throw new PlayerUnitPrefabNotFoundException(unitType);
+            }
+        }
+
+        /// <summary>
+        /// Sets reference on player unit prefab of specific type.
+        /// </summary>
+        /// <param name="unitType">Player unit type of prefab to be set</param>
+        /// <param name="prefab">Reference on prefab</param>
+        public void SetPlayerUnitPrefab(PlayerUnitType unitType, GameObject prefab)
+        {
+            if (prefab == null)
+            {
+                throw new ArgumentNullException("prefab");
+            }
+
+            switch (unitType)
+            {
+                case PlayerUnitType.Warrior:
+                    _warrior = prefab;
+                    break;
+                case PlayerUnitType.Spearman:
+                    _spearman = prefab;
+                    break;
+                case PlayerUnitType.Axeman:
+                    _axeman = prefab;
+                    break;
+                case PlayerUnitType.Knight:
+                    _knight = prefab;
+                    break;
+                case PlayerUnitType.Crossbowman:
+                    _crossbowman = prefab;
+                    break;
+                case PlayerUnitType.Bowman:
+                    _bowman = prefab;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("unitType", unitType, "Unknown player unit type " + unitType + ".");
+            }
         }
 
         /// <summary>
@@ -128,7 +198,7 @@ namespace Assets.Scripts
         /// </summary>
         /// <param name="unitType">Type of player unit to be found</param>
         /// <returns>Player unit of given type</returns>
-        private PlayerUnit FindPlayerUnit(PlayerUnitType unitType)
+        public PlayerUnit FindPlayerUnit(PlayerUnitType unitType)
         {
             PlayerUnit unit = PlayerUnitStats.FirstOrDefault(t => t.UnitType == unitType);
             if (unit == null)
@@ -140,18 +210,18 @@ namespace Assets.Scripts
 
         private void LoadTestStats()
         {
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Axeman", PlayerUnitType.Axeman, 175f, 7f, 7f, 4f, 4f, 50f));
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Bowman", PlayerUnitType.Bowman, 100f, 5f, 4f, 5f, 6f, 25f));
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Crossbowman", PlayerUnitType.Crossbowman, 100f, 5f, 4f, 5f, 6f, 25f));
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Knight", PlayerUnitType.Knight, 250f, 10f, 10f, 3f, 3f, 50f));
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Spearman", PlayerUnitType.Spearman, 150f, 7f, 5f, 5f, 5f, 25f));
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Warrior", PlayerUnitType.Warrior, 100f, 5f, 5f, 5f, 5f, 25f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Axeman", PlayerUnitType.Axeman, 175f, 7f, 7f, 4f, 4f, 1.5f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Bowman", PlayerUnitType.Bowman, 100f, 5f, 4f, 5f, 6f, 1f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Crossbowman", PlayerUnitType.Crossbowman, 100f, 5f, 4f, 5f, 6f, 1f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Knight", PlayerUnitType.Knight, 250f, 10f, 10f, 3f, 3f, 2.5f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Spearman", PlayerUnitType.Spearman, 150f, 7f, 5f, 5f, 5f, 1.25f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Warrior", PlayerUnitType.Warrior, 100f, 5f, 5f, 5f, 5f, 1.1f));
         }
 
         private void TestLevelControllers()
         {
-            GameObject test01 = new GameObject("test01");
-            test01.AddComponent<LevelTest01ControllerScript>();
+            //GameObject test01 = new GameObject("test01");
+            //test01.AddComponent<LevelTest01ControllerScript>();
             GameObject test02 = new GameObject("test02");
             test02.AddComponent<LevelTest02ControllerScript>();
         }

@@ -164,7 +164,7 @@ namespace Assets.Scripts
 
         /// <summary>
         /// Checks whether connection between previous, current and next checkpoints, towers, start spawn and finish can be created.
-        /// Sets flags for objects which breaks these connections.
+        /// Sets flags for objects which break these connections.
         /// </summary>
         /// <param name="targets">Collection of game objects which connections to others should be checked, checks all if null</param>
         public void RecalculateConnections(List<GameObject> targets = null)

@@ -21,6 +21,11 @@ namespace Assets.Scripts
 
         private void InitTest02()
         {
+            GameObject startSpawn = new GameObject("StartSpawn");
+            startSpawn.AddComponent<StartSpawnScript>();
+
+            GameObject finish = new GameObject("Finish");
+
             AddCheckpoint(new GameObject("test02-1"));
             AddCheckpoint(new GameObject("test02-2"));
             AddCheckpoint(new GameObject("test02-3"));

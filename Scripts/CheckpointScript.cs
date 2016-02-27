@@ -49,10 +49,12 @@ namespace Assets.Scripts
             for (int i = 0; i < MiniCheckpointsCount; ++i)
             {
                 GameObject miniCp = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+                miniCp.AddComponent<MiniCheckpointScript>();
+                MiniCheckpointScript miniCpScript = miniCp.GetComponent<MiniCheckpointScript>();
+                miniCpScript.Index = i;
                 miniCp.name = "MiniCheckpoint-" + i;
-
-                // TODO: nastavit mu jeho index na hodnotu "i", nastavit objekt na neviditelny
-
+                
                 miniCp.transform.localScale = new Vector3(MiniCheckpointsSize, MiniCheckpointsSize, MiniCheckpointsSize);
                 miniCp.transform.parent = this.gameObject.transform;
                 miniCp.transform.localPosition = new Vector3(offset, 0f, 0f);
