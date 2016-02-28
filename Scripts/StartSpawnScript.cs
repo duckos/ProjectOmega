@@ -12,16 +12,6 @@ namespace Assets.Scripts
     /// </summary>
     class StartSpawnScript : MonoBehaviour
     {
-        private static StartSpawnScript _instance;
-        /// <summary>
-        /// Returns instance of start spawn.
-        /// </summary>
-        /// <returns>Start spawn instance</returns>
-        public static StartSpawnScript Get()
-        {
-            return _instance ?? (_instance = FindObjectOfType<StartSpawnScript>());
-        }
-        
         private Dictionary<PlayerUnitType, float> _playerUnitCooldowns = new Dictionary<PlayerUnitType, float>();
         /// <summary>
         /// Gets or sets remaining cooldown spawn time of player units.
@@ -32,11 +22,14 @@ namespace Assets.Scripts
             protected set { _playerUnitCooldowns = value; }
         }
 
+        private int _pathIndex = 0;
+
         /// <summary>
         /// Start method of unity script.
         /// </summary>
         public void Start()
         {
+            this.gameObject.name = "StartSpawn";
             foreach (PlayerUnit playerUnit in GlobalControllerScript.Get().PlayerUnitStats)
             {
                 PlayerUnitCooldowns.Add(playerUnit.UnitType, 0f);
@@ -66,14 +59,27 @@ namespace Assets.Scripts
         {
             if (PlayerUnitCooldowns[unitType] > 0f)
             {
-                return;
+                throw new Exception("Could not spawn player unit, cooldown has not finished yet.");
             }
 
             GameObject prefab = GlobalControllerScript.Get().GetPlayerUnitPrefab(unitType);
-            PlayerUnitCooldowns[unitType] = GlobalControllerScript.Get().FindPlayerUnit(unitType).SpawnCooldown;
-            GameObject instance = (GameObject) Instantiate(prefab, this.gameObject.transform.position, Quaternion.identity);
+            PlayerUnit playerUnit = GlobalControllerScript.Get().FindPlayerUnit(unitType);
+            PlayerUnitCooldowns[unitType] = playerUnit.SpawnCooldown;
 
-            // TODO: ziskanie skriptu instancie a nastavenie properties
+            GameObject instance = (GameObject) Instantiate(prefab, this.gameObject.transform.position, Quaternion.identity);
+            PlayerUnitScript playerUnitScript = instance.AddComponent<PlayerUnitScript>();
+
+            playerUnitScript.UnitType = unitType;
+            playerUnitScript.Health = playerUnit.MaxHealth;
+            playerUnitScript.Damage = playerUnit.Damage;
+            playerUnitScript.Armor = playerUnit.Armor;
+            playerUnitScript.AttackSpeed = playerUnit.AttackSpeed;
+            playerUnitScript.MoveSpeed = playerUnit.MoveSpeed;
+
+            playerUnitScript.PathIndex = _pathIndex;
+            _pathIndex = (_pathIndex + 1) % CheckpointScript.MiniCheckpointsCount;
+
+            playerUnitScript.MoveToward(LevelControllerScript.Get().FindNextCheckpoint());
         }
     }
 }

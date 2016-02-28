@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Assets.Scripts.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -45,12 +46,14 @@ namespace Assets.Scripts
         public void Start()
         {
             DontDestroyOnLoad(this.gameObject);
+            this.gameObject.name = "GlobalController";
 
             // for testing, will be loaded from file
             LoadTestStats();
 
-            // testovanie funkcnosti level controllerov
-            TestLevelControllers();
+            // na testovanie, scena 0 je inicialna scena / menu, scena 1 je samotny level
+            // global controller musi byt uz vytvoreny predtym ako sa nacitaju ostatne controllery
+            SceneManager.LoadScene(1);
         }
 
         /// <summary>
@@ -210,20 +213,12 @@ namespace Assets.Scripts
 
         private void LoadTestStats()
         {
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Axeman", PlayerUnitType.Axeman, 175f, 7f, 7f, 4f, 4f, 1.5f));
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Bowman", PlayerUnitType.Bowman, 100f, 5f, 4f, 5f, 6f, 1f));
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Crossbowman", PlayerUnitType.Crossbowman, 100f, 5f, 4f, 5f, 6f, 1f));
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Knight", PlayerUnitType.Knight, 250f, 10f, 10f, 3f, 3f, 2.5f));
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Spearman", PlayerUnitType.Spearman, 150f, 7f, 5f, 5f, 5f, 1.25f));
-            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Warrior", PlayerUnitType.Warrior, 100f, 5f, 5f, 5f, 5f, 1.1f));
-        }
-
-        private void TestLevelControllers()
-        {
-            //GameObject test01 = new GameObject("test01");
-            //test01.AddComponent<LevelTest01ControllerScript>();
-            GameObject test02 = new GameObject("test02");
-            test02.AddComponent<LevelTest02ControllerScript>();
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Axeman", PlayerUnitType.Axeman, 175f, 7f, 7f, 4f, 20f, 1.5f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Bowman", PlayerUnitType.Bowman, 100f, 5f, 4f, 5f, 30f, 1f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Crossbowman", PlayerUnitType.Crossbowman, 100f, 5f, 4f, 5f, 30f, 1f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Knight", PlayerUnitType.Knight, 250f, 10f, 10f, 3f, 15f, 2.5f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Spearman", PlayerUnitType.Spearman, 150f, 7f, 5f, 5f, 25f, 1.25f));
+            PlayerUnitStats.AddPlayerUnit(new PlayerUnit("Warrior", PlayerUnitType.Warrior, 100f, 5f, 5f, 5f, 25f, 1.1f));
         }
     }
 }

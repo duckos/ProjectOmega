@@ -9,7 +9,7 @@ namespace Assets.Scripts
     /// <summary>
     /// Level controller for Test 02.
     /// </summary>
-    class LevelTest02ControllerScript : LevelControllerScript<LevelTest02ControllerScript>
+    class LevelTest02ControllerScript : LevelControllerScript
     {
         /// <summary>
         /// Start method of unity script.
@@ -23,8 +23,14 @@ namespace Assets.Scripts
         {
             GameObject startSpawn = new GameObject("StartSpawn");
             startSpawn.AddComponent<StartSpawnScript>();
+            StartSpawn = startSpawn;
 
-            GameObject finish = new GameObject("Finish");
+            GameObject finish = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            finish.name = "Finish";
+            finish.transform.localScale = new Vector3(10f, 10f, 10f);
+            finish.transform.position = new Vector3(150f, 5f, 187f);
+            finish.AddComponent<FinishScript>();
+            Finish = finish;
 
             AddCheckpoint(new GameObject("test02-1"));
             AddCheckpoint(new GameObject("test02-2"));
@@ -38,6 +44,8 @@ namespace Assets.Scripts
             MoveCheckpoint(3, 1);
             MoveCheckpoint(5, 7);
             MoveCheckpoint(6, 3);
+
+            Checkpoints[0].transform.position = new Vector3(150f, 0f, 190f);
         }
     }
 }

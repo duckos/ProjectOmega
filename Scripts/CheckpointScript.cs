@@ -49,9 +49,7 @@ namespace Assets.Scripts
             for (int i = 0; i < MiniCheckpointsCount; ++i)
             {
                 GameObject miniCp = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
-                miniCp.AddComponent<MiniCheckpointScript>();
-                MiniCheckpointScript miniCpScript = miniCp.GetComponent<MiniCheckpointScript>();
+                MiniCheckpointScript miniCpScript = miniCp.AddComponent<MiniCheckpointScript>();
                 miniCpScript.Index = i;
                 miniCp.name = "MiniCheckpoint-" + i;
                 

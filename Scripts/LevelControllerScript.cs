@@ -10,17 +10,16 @@ namespace Assets.Scripts
     /// <summary>
     /// Abstract super class for controlling levels, stores collection of checkpoints, start spawn and finish.
     /// </summary>
-    /// <typeparam name="T">Generic type for different levels</typeparam>
-    abstract class LevelControllerScript<T> : MonoBehaviour
+    abstract class LevelControllerScript : MonoBehaviour
     {
-        private static LevelControllerScript<T> _instance;
+        private static LevelControllerScript _instance;
         /// <summary>
         /// Returns instance of level controller.
         /// </summary>
         /// <returns>Level controller instance</returns>
-        public static LevelControllerScript<T> Get()
+        public static LevelControllerScript Get()
         {
-            return _instance ?? (_instance = FindObjectOfType<LevelControllerScript<T>>());
+            return _instance ?? (_instance = FindObjectOfType<LevelControllerScript>());
         }
 
         [SerializeField] private List<GameObject> _checkpoints = new List<GameObject>();
@@ -33,25 +32,15 @@ namespace Assets.Scripts
             protected set { _checkpoints = value; }
         }
 
-        [SerializeField] private GameObject _startSpawn;
         /// <summary>
         /// Gets or sets starting spawn object of level.
         /// </summary>
-        public GameObject StartSpawn
-        {
-            get { return _startSpawn; }
-            set { _startSpawn = value; }
-        }
+        public GameObject StartSpawn { get; set; }
 
-        [SerializeField] private GameObject _finish;
         /// <summary>
         /// Gets or sets finish object of level.
         /// </summary>
-        public GameObject Finish
-        {
-            get { return _finish; }
-            set { _finish = value; }
-        }
+        public GameObject Finish { get; set; }
 
         /// <summary>
         /// Adds checkpoint to specific position of collection or at the end in default.
@@ -98,11 +87,21 @@ namespace Assets.Scripts
 
         /// <summary>
         /// Finds next checkpoint in colletion for given current checkpoint.
+        /// If null returns first checkpoint.
         /// </summary>
         /// <param name="currentCheckpoint">Current checkpoint</param>
         /// <returns>Next checkpoint or finish</returns>
-        public GameObject FindNextCheckpoint(GameObject currentCheckpoint)
+        public GameObject FindNextCheckpoint(GameObject currentCheckpoint = null)
         {
+            if (currentCheckpoint == null)
+            {
+                if (Checkpoints.Count == 0)
+                {
+                    return Finish;
+                }
+                return Checkpoints[0];
+            }
+
             for (int i = 0; i < Checkpoints.Count; ++i)
             {
                 if (Checkpoints[i] == currentCheckpoint)
