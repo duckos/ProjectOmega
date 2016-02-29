@@ -59,7 +59,7 @@ namespace Assets.Scripts
         {
             if (PlayerUnitCooldowns[unitType] > 0f)
             {
-                throw new Exception("Could not spawn player unit, cooldown has not finished yet.");
+                throw new Exception("Could not spawn player unit of type " + unitType + ", cooldown has not finished yet.");
             }
 
             GameObject prefab = GlobalControllerScript.Get().GetPlayerUnitPrefab(unitType);

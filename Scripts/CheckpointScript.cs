@@ -20,7 +20,7 @@ namespace Assets.Scripts
             get { return _miniCheckpointsCount; }
         }
 
-        private static readonly float _miniCheckpointsSize = 0.5f;
+        private static readonly float _miniCheckpointsSize = 5f;
         /// <summary>
         /// Size of mini checkpoint cube.
         /// </summary>

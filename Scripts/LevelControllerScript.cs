@@ -35,12 +35,12 @@ namespace Assets.Scripts
         /// <summary>
         /// Gets or sets starting spawn object of level.
         /// </summary>
-        public GameObject StartSpawn { get; set; }
+        public GameObject StartSpawn { get; protected set; }
 
         /// <summary>
         /// Gets or sets finish object of level.
         /// </summary>
-        public GameObject Finish { get; set; }
+        public GameObject Finish { get; protected set; }
 
         /// <summary>
         /// Adds checkpoint to specific position of collection or at the end in default.
@@ -87,7 +87,7 @@ namespace Assets.Scripts
 
         /// <summary>
         /// Finds next checkpoint in colletion for given current checkpoint.
-        /// If null returns first checkpoint.
+        /// Returns first checkpoint (or finish when no checkpoint exists) if current checkpoint is null.
         /// </summary>
         /// <param name="currentCheckpoint">Current checkpoint</param>
         /// <returns>Next checkpoint or finish</returns>

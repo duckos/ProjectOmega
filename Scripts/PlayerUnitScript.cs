@@ -92,7 +92,7 @@ namespace Assets.Scripts
         /// </summary>
         public void Start()
         {
-            
+            this.gameObject.name = "PlayerUnit";
         }
 
         /// <summary>
@@ -107,7 +107,25 @@ namespace Assets.Scripts
 
             if (Destination != null)
             {
-                transform.position = Vector3.MoveTowards(transform.position, Destination.transform.position, MoveSpeed * Time.deltaTime);
+                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, Destination.name == "Checkpoint" 
+                    ? Destination.GetComponent<CheckpointScript>().MiniCheckpoints[PathIndex].transform.position 
+                    : Destination.transform.position, MoveSpeed * Time.deltaTime);
+            }
+        }
+
+        /// <summary>
+        /// OnTriggerEnter method of unity script.
+        /// </summary>
+        /// <param name="other">Other collider</param>
+        public void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.name == "MiniCheckpoint-" + PathIndex)
+            {
+                MoveToward(LevelControllerScript.Get().FindNextCheckpoint(other.gameObject.transform.parent.gameObject));
+            }
+            else if (other.gameObject.name == "Finish")
+            {
+                Destroy(this.gameObject);
             }
         }
 

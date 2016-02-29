@@ -17,6 +17,8 @@ namespace Assets.Scripts
         /// </summary>
         public void Start()
         {
+            this.gameObject.name = "LevelTest01Controller";
+
             InitTest01();
         }
 

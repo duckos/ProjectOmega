@@ -16,36 +16,48 @@ namespace Assets.Scripts
         /// </summary>
         public void Start()
         {
+            this.gameObject.name = "LevelTest02Controller";
+
             InitTest02();
         }
 
         private void InitTest02()
         {
             GameObject startSpawn = new GameObject("StartSpawn");
+            startSpawn.transform.position = new Vector3(14f, 5f, 475f);
             startSpawn.AddComponent<StartSpawnScript>();
             StartSpawn = startSpawn;
 
             GameObject finish = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            finish.name = "Finish";
             finish.transform.localScale = new Vector3(10f, 10f, 10f);
-            finish.transform.position = new Vector3(150f, 5f, 187f);
+            finish.transform.position = new Vector3(322f, 5f, 304f);
             finish.AddComponent<FinishScript>();
             Finish = finish;
 
-            AddCheckpoint(new GameObject("test02-1"));
-            AddCheckpoint(new GameObject("test02-2"));
-            AddCheckpoint(new GameObject("test02-3"));
-            AddCheckpoint(new GameObject("test02-4"));
-            AddCheckpoint(new GameObject("test02-5"));
-            AddCheckpoint(new GameObject("test02-6"));
-            AddCheckpoint(new GameObject("test02-7"));
-            AddCheckpoint(new GameObject("test02-8"));
+            GameObject cp = new GameObject();
+            cp.transform.position = new Vector3(45f, 5f, 393f);
+            cp.AddComponent<CheckpointScript>();
+            AddCheckpoint(cp);
 
-            MoveCheckpoint(3, 1);
-            MoveCheckpoint(5, 7);
-            MoveCheckpoint(6, 3);
+            cp = new GameObject();
+            cp.transform.position = new Vector3(115f, 5f, 290f);
+            cp.AddComponent<CheckpointScript>();
+            AddCheckpoint(cp);
 
-            Checkpoints[0].transform.position = new Vector3(150f, 0f, 190f);
+            cp = new GameObject();
+            cp.transform.position = new Vector3(26f, 5f, 223f);
+            cp.AddComponent<CheckpointScript>();
+            AddCheckpoint(cp);
+
+            cp = new GameObject();
+            cp.transform.position = new Vector3(98f, 5f, 178f);
+            cp.AddComponent<CheckpointScript>();
+            AddCheckpoint(cp);
+
+            cp = new GameObject();
+            cp.transform.position = new Vector3(228f, 5f, 196f);
+            cp.AddComponent<CheckpointScript>();
+            AddCheckpoint(cp);
         }
     }
 }

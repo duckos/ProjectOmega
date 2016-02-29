@@ -27,6 +27,7 @@ namespace Assets.Scripts
         public void Start()
         {
             this.gameObject.GetComponent<Renderer>().enabled = false;
+            this.gameObject.GetComponent<Collider>().isTrigger = true;
         }
     }
 }

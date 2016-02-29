@@ -18,6 +18,7 @@ namespace Assets.Scripts
         {
             this.gameObject.name = "Finish";
             this.gameObject.GetComponent<Renderer>().enabled = false;
+            this.gameObject.GetComponent<Collider>().isTrigger = true;
         }
     }
 }
