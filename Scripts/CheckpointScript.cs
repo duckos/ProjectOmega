@@ -39,6 +39,16 @@ namespace Assets.Scripts
             protected set { _miniCheckpoints = value; }
         }
 
+        [SerializeField] private bool _hasBrokenConnection = false;
+        /// <summary>
+        /// Gets or sets flag about broken connection to other checkpoint(s).
+        /// </summary>
+        public bool HasBrokenConnection
+        {
+            get { return _hasBrokenConnection; }
+            set { _hasBrokenConnection = value; }
+        }
+
         /// <summary>
         /// Start method of unity script.
         /// </summary>

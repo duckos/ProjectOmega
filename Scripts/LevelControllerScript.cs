@@ -46,24 +46,24 @@ namespace Assets.Scripts
         /// Adds checkpoint to specific position of collection or at the end in default.
         /// </summary>
         /// <param name="checkpoint">Checkpoint to be added</param>
-        /// <param name="index">Index where to insert checkpoint</param>
-        public void AddCheckpoint(GameObject checkpoint, int index = -1)
+        /// <param name="index">Index where to insert checkpoint, added to the end if null</param>
+        public void AddCheckpoint(GameObject checkpoint, int? index = null)
         {
             if (checkpoint == null)
             {
                 throw new ArgumentNullException("checkpoint");
             }
-            
-            if ((index < 0) || (index >= Checkpoints.Count))
+
+            if (index.HasValue)
             {
-                Checkpoints.Add(checkpoint);
+                Checkpoints.Insert(index.Value, checkpoint);
             }
             else
             {
-                Checkpoints.Insert(index, checkpoint);
+                Checkpoints.Add(checkpoint);
             }
-
-            RecalculateConnections(new List<GameObject>() { checkpoint });
+            
+            RecalculateConnections(new List<int>() { index ?? Checkpoints.Count - 1 });
         }
 
         /// <summary>
@@ -78,10 +78,10 @@ namespace Assets.Scripts
             }
 
             Checkpoints.RemoveAt(index);
-            RecalculateConnections(new List<GameObject>()
+            RecalculateConnections(new List<int>()
             {
-                index == 0 ? Checkpoints[0] : Checkpoints[index - 1],
-                index == Checkpoints.Count ? Checkpoints[index - 1] : Checkpoints[index]    // TODO: pravdepodobne netreba, skontrolovat a odstranit
+                index == 0 ? 0 : index - 1,
+                index == Checkpoints.Count ? index - 1 : index      // TODO: pravdepodobne netreba, skontrolovat a odstranit
             });
         }
 
@@ -142,7 +142,7 @@ namespace Assets.Scripts
             }
             Checkpoints[pos] = movedCheckpoint;
 
-            RecalculateConnections(new List<GameObject>() { Checkpoints[oldIndex], Checkpoints[newIndex] });
+            RecalculateConnections(new List<int>() { oldIndex, newIndex });
         }
 
         /// <summary>
@@ -158,19 +158,36 @@ namespace Assets.Scripts
             }
 
             Checkpoints[index].transform.position = newPosition;
-            RecalculateConnections(new List<GameObject>() { Checkpoints[index] });
+            RecalculateConnections(new List<int>() { index });
         }
 
         /// <summary>
         /// Checks whether connection between previous, current and next checkpoints, towers, start spawn and finish can be created.
-        /// Sets flags for objects which break these connections.
+        /// Sets flag for objects which break these connections.
         /// </summary>
-        /// <param name="targets">Collection of game objects which connections to others should be checked, checks all if null</param>
-        public void RecalculateConnections(List<GameObject> targets = null)
+        /// <param name="targetIndices">Collection of checkpoint indices which connections to others should be checked, checks all if null</param>
+        public void RecalculateConnections(List<int> targetIndices = null)
         {
-            // TODO: skontrolovat ci sa do cp da dostat z predchadzajuceho cp + ci sa z neho da dostat do dalsieho cp
-            // TODO: skontrolovat pristupnost start spawnu a finishu + skontrolovat vsetky veze a ich previous a next cp
-            // TODO: nastavit nejaky flag (property) na cp, ktory pokazil nejake spojenia
+            if (targetIndices == null)
+            {
+                targetIndices = Enumerable.Range(0, Checkpoints.Count).ToList();
+            }
+
+            foreach (int index in targetIndices)
+            {
+                GameObject before = index == 0 ? StartSpawn : Checkpoints[index - 1];
+                GameObject current = Checkpoints[index];
+                GameObject after = index + 1 == Checkpoints.Count ? Finish : Checkpoints[index + 1];
+
+                bool connectionBefore = CanCreateConnection(before, current);
+                bool connectionAfter = CanCreateConnection(current, after);
+                current.GetComponent<CheckpointScript>().HasBrokenConnection = !connectionBefore || !connectionAfter;
+            }
+
+
+            // TODO: skontrolovat vsetky veze a ich previous a next cp
+            // TODO: pravdepodobne budu tieto spojenia vytvarane hracom a ulozene v strukture
+            // TODO: bude sa kontrolovat ci je cp null a ci je mozne vytvorit spojenie
         }
 
         /// <summary>
@@ -188,6 +205,24 @@ namespace Assets.Scripts
                 Vector3 dir = (afterPos - currentPos).normalized + (currentPos - beforePos).normalized;
                 Checkpoints[i].transform.rotation = Quaternion.LookRotation(dir);
             }
+        }
+
+        /// <summary>
+        /// Calculates whether between two objects is not terrain from scene.
+        /// </summary>
+        /// <param name="from">Object from which it starts</param>
+        /// <param name="to">Object in which it ends</param>
+        /// <returns>True if there is no terrain between two objects, false otherwise</returns>
+        public bool CanCreateConnection(GameObject from, GameObject to)
+        {
+            Vector3 fromPos = from.transform.position;
+            fromPos.Set(fromPos.x, fromPos.y + CheckpointScript.MiniCheckpointsSize, fromPos.z);
+            Vector3 toPos = to.transform.position;
+            toPos.Set(toPos.x, toPos.y + CheckpointScript.MiniCheckpointsSize, toPos.z);
+
+            RaycastHit temp;
+            Ray ray = new Ray(fromPos, (toPos - fromPos).normalized);
+            return !Terrain.activeTerrain.GetComponent<Collider>().Raycast(ray, out temp, Vector3.Distance(fromPos, toPos));
         }
     }
 }

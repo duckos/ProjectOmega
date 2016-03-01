@@ -59,6 +59,11 @@ namespace Assets.Scripts
             cp.AddComponent<CheckpointScript>();
             AddCheckpoint(cp);
 
+            cp = new GameObject();
+            cp.transform.position = new Vector3(516f, 5f, 92f);
+            cp.AddComponent<CheckpointScript>();
+            AddCheckpoint(cp);
+
             RecalculateCheckpointRotations();
         }
     }
