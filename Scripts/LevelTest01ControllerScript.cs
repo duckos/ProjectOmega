@@ -24,7 +24,7 @@ namespace Assets.Scripts
 
         private void InitTest01()
         {
-            GameObject startSpawn = new GameObject("StartSpawn");
+            GameObject startSpawn = new GameObject();
             startSpawn.AddComponent<StartSpawnScript>();
             StartSpawn = startSpawn;
 

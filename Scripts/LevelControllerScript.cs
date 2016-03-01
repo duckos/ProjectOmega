@@ -179,7 +179,15 @@ namespace Assets.Scripts
         /// </summary>
         public void RecalculateCheckpointRotations()
         {
-            // TODO: prepocitat rotacie vsetkych checkpointov, aby sa dalo normalne presuvat po cestach medzi mini cp
+            for (int i = 0; i < Checkpoints.Count; ++i)
+            {
+                Vector3 afterPos = i + 1 == Checkpoints.Count ? Finish.transform.position : Checkpoints[i + 1].transform.position;
+                Vector3 currentPos = Checkpoints[i].transform.position;
+                Vector3 beforePos = i == 0 ? StartSpawn.transform.position : Checkpoints[i - 1].transform.position;
+
+                Vector3 dir = (afterPos - currentPos).normalized + (currentPos - beforePos).normalized;
+                Checkpoints[i].transform.rotation = Quaternion.LookRotation(dir);
+            }
         }
     }
 }

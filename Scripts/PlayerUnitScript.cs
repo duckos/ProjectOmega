@@ -119,7 +119,7 @@ namespace Assets.Scripts
         /// <param name="other">Other collider</param>
         public void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.name == "MiniCheckpoint-" + PathIndex)
+            if ((other.gameObject.name == "MiniCheckpoint") && (other.gameObject.GetComponent<MiniCheckpointScript>().Index == PathIndex))
             {
                 MoveToward(LevelControllerScript.Get().FindNextCheckpoint(other.gameObject.transform.parent.gameObject));
             }

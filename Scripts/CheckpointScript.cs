@@ -51,7 +51,6 @@ namespace Assets.Scripts
                 GameObject miniCp = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 MiniCheckpointScript miniCpScript = miniCp.AddComponent<MiniCheckpointScript>();
                 miniCpScript.Index = i;
-                miniCp.name = "MiniCheckpoint-" + i;
                 
                 miniCp.transform.localScale = new Vector3(MiniCheckpointsSize, MiniCheckpointsSize, MiniCheckpointsSize);
                 miniCp.transform.parent = this.gameObject.transform;

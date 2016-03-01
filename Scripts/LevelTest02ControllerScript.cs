@@ -23,7 +23,7 @@ namespace Assets.Scripts
 
         private void InitTest02()
         {
-            GameObject startSpawn = new GameObject("StartSpawn");
+            GameObject startSpawn = new GameObject();
             startSpawn.transform.position = new Vector3(14f, 5f, 475f);
             startSpawn.AddComponent<StartSpawnScript>();
             StartSpawn = startSpawn;
@@ -58,6 +58,8 @@ namespace Assets.Scripts
             cp.transform.position = new Vector3(228f, 5f, 196f);
             cp.AddComponent<CheckpointScript>();
             AddCheckpoint(cp);
+
+            RecalculateCheckpointRotations();
         }
     }
 }
