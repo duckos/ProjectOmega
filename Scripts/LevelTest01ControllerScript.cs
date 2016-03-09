@@ -24,23 +24,16 @@ namespace Assets.Scripts
 
         private void InitTest01()
         {
-            GameObject startSpawn = new GameObject();
-            startSpawn.AddComponent<StartSpawnScript>();
-            StartSpawn = startSpawn;
+            StartSpawn = StartSpawnScript.CreateStartSpawnObject(Vector3.zero);
+            Finish = FinishScript.CreateFinishObject(new Vector3(150f, 5f, 187f), new Vector3(10f, 10f, 10f));
 
-            GameObject finish = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            finish.name = "Finish";
-            finish.transform.localScale = new Vector3(10f, 10f, 10f);
-            finish.transform.position = new Vector3(150f, 5f, 187f);
-            finish.AddComponent<FinishScript>();
-            Finish = finish;
+            AddCheckpoint(CheckpointScript.CreateCheckpointObject(Vector3.zero));
+            AddCheckpoint(CheckpointScript.CreateCheckpointObject(Vector3.zero));
+            AddCheckpoint(CheckpointScript.CreateCheckpointObject(Vector3.zero));
+            AddCheckpoint(CheckpointScript.CreateCheckpointObject(Vector3.zero));
 
-            AddCheckpoint(new GameObject("test01-1"));
-            AddCheckpoint(new GameObject("test01-2"));
-            AddCheckpoint(new GameObject("test01-3"));
-            AddCheckpoint(new GameObject("test01-4"));
-
-            Checkpoints[0].transform.position = new Vector3(150f, 0f, 190f);
+            ChangeCheckpointPosition(0, new Vector3(150f, 0f, 190f));
+            RecalculateCheckpointRotations();
         }
     }
 }

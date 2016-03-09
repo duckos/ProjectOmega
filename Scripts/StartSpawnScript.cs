@@ -81,5 +81,18 @@ namespace Assets.Scripts
 
             playerUnitScript.MoveToward(LevelControllerScript.Get().FindNextCheckpoint());
         }
+
+        /// <summary>
+        /// Creates start spawn unity object at specific position.
+        /// </summary>
+        /// <param name="position">Position where to create start spawn</param>
+        /// <returns>Instance of start spawn unity object</returns>
+        public static GameObject CreateStartSpawnObject(Vector3 position)
+        {
+            GameObject startSpawn = new GameObject();
+            startSpawn.transform.position = position;
+            startSpawn.AddComponent<StartSpawnScript>();
+            return startSpawn;
+        }
     }
 }

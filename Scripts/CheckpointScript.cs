@@ -70,5 +70,18 @@ namespace Assets.Scripts
                 offset += 2 * MiniCheckpointsSize;
             }
         }
+
+        /// <summary>
+        /// Creates new checkpoint unity object at specific position.
+        /// </summary>
+        /// <param name="position">Position where to create checkpoint</param>
+        /// <returns>Instance of checkpoint unity object</returns>
+        public static GameObject CreateCheckpointObject(Vector3 position)
+        {
+            GameObject checkpoint = new GameObject();
+            checkpoint.transform.position = position;
+            checkpoint.AddComponent<CheckpointScript>();
+            return checkpoint;
+        }
     }
 }
