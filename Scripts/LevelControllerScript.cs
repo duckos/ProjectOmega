@@ -43,6 +43,14 @@ namespace Assets.Scripts
         public GameObject Finish { get; protected set; }
 
         /// <summary>
+        /// Gets collection of all towers in scene.
+        /// </summary>
+        public List<TowerScript> Towers
+        {
+            get { return FindObjectsOfType<TowerScript>().ToList(); }
+        } 
+
+        /// <summary>
         /// Adds checkpoint to specific position of collection or at the end in default.
         /// </summary>
         /// <param name="checkpoint">Checkpoint to be added</param>

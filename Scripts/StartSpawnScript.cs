@@ -22,6 +22,9 @@ namespace Assets.Scripts
             protected set { _playerUnitCooldowns = value; }
         }
 
+        /// <summary>
+        /// Stores index of path, which will be used by next spawned player unit.
+        /// </summary>
         private int _pathIndex = 0;
 
         /// <summary>
