@@ -85,6 +85,19 @@ namespace Assets.Scripts
             playerUnitScript.MoveToward(LevelControllerScript.Get().FindNextCheckpoint());
         }
 
+        public void SpawnPlayerUnit(string unitType)
+        {
+            foreach (Enum en in Enum.GetValues(typeof(PlayerUnitType)))
+            {
+                Debug.Log(en.ToString());
+                if (en.ToString().Equals(unitType))
+                {
+                    SpawnPlayerUnit((PlayerUnitType)en);
+                    break;
+                }
+            }
+        }
+
         /// <summary>
         /// Creates start spawn unity object at specific position.
         /// </summary>
